@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="CSS/style.css">
+        <title>Maitre D - SK</title>
+
+
+        
+    </head>
+    <body>
+        <header>
+            <h1>Maitre D</h1>
+        </header>
+        <hr>
+        <br>
+        <br>
+        <main>
+        <div id="container">
+            <div>
+                <label>Total Bill:</label>
+                <input type="text" placeholder="Enter your total" id="billTotal">
+            </div>
+            <div>
+                <label>Tip:   </label><span id="tipoutput">0.00</span>
+                <label id="ratestyle">Rate: </label>
+                <input type="text" value="" id="tipinput">
+            </div>
+            <div>
+                <label>Tax:   </label><span id="taxoutput"></span>
+               
+            </div>
+            <div>
+                <label>Grand Total:</label><span id="grandtotalOut">0</span>
+
+            </div>
+            <div>
+                <button id="calculate" onmousedown="calc()">Calculate</button>
+            </div>
+        </div>
+
+        </main>
+
+        <script>
+            document.getElementById('container').onchange = function calc(){
+                var total = document.getElementById('billTotal').value;
+                var tipPercent = document.getElementById('tipinput').value;
+
+                let tipfinal = parseFloat(total) * parseFloat(tipPercent) * 0.01;
+                let taxcount = parseFloat(total) * 0.055;
+                let grandtotal = parseFloat(tipfinal) + parseFloat(taxcount) + parseFloat(total);
+
+                document.getElementById('tipoutput').innerHTML = " $ "+tipfinal.toFixed(2);
+                
+                document.getElementById('grandtotalOut').innerHTML = " $"+grandtotal.toFixed(2);
+
+                if(isNaN(tipfinal)){
+                    document.getElementById('tipoutput').innerHTML = "$0.00";
+                }
+                else{
+                    document.getElementById('tipoutput').innerHTML = " $ "+tipfinal.toFixed(2);
+                }
+                if(isNaN(taxcount)){
+                    document.getElementById('taxoutput').innerHTML = "";
+                }
+                else{
+                    document.getElementById('taxoutput').innerHTML = " $ " + taxcount.toFixed(2);
+                }
+                if(isNaN(grandtotal)){
+                    document.getElementById('grandtotalOut').innerHTML = "";
+                }
+                else{
+                    document.getElementById('grandtotalOut').innerHTML = " $"+ grandtotal.toFixed(2);
+                }
+                
+            }
+
+
+            
+        </script>
+        
+        <footer>
+            <hr>
+            <h2>Developed by Spyridon Kaperonis</h2>
+            <hr>
+        </footer>
+        
+    </body>
+</html>
